@@ -1,6 +1,6 @@
 import os
 
-import praw # type: ignore[import-untyped]
+import praw  # type: ignore[import-untyped]
 from openai import OpenAI
 
 
