@@ -1,38 +1,27 @@
-# This defines the name of the workflow as it will appear in the "Actions" tab of the GitHub repository.
-name: 'Link Checker: All English'
+name: 'Standard python Linting and formatting toolkit'
 
-# The `on` key lets you define the events that trigger when the workflow is run. You can define multiple events here. For more information, see "[AUTOTITLE](/actions/using-workflows/triggering-a-workflow#using-events-to-trigger-workflows)."
 on:
-# Add the `workflow_dispatch` event if you want to be able to manually run this workflow from the UI. For more information, see [`workflow_dispatch`](/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch).
   workflow_dispatch:
-  # Add the `push` event, so that the workflow runs automatically every time a commit is pushed to a branch called `main`. For more information, see [`push`](/actions/using-workflows/events-that-trigger-workflows#push).
   push:
     branches:
       - main
-  # Add the `pull_request` event, so that the workflow runs automatically every time a pull request is created or updated. For more information, see [`pull_request`](/actions/using-workflows/events-that-trigger-workflows#pull_request).
   pull_request:
 
-# This modifies the default permissions granted to `GITHUB_TOKEN`. This will vary depending on the needs of your workflow. For more information, see "[AUTOTITLE](/actions/using-jobs/assigning-permissions-to-jobs)."
-#
-# In this example, the `pull-requests: read` permission is needed for the `trilom/file-changes-action` action that is used later in this workflow.
 permissions:
   contents: read
   pull-requests: read
 
-# The `jobs` key groups together all the jobs that run in the workflow file.
 jobs:
-  # This line defines a job with the ID `check-links` that is stored within the `jobs` key.
-  check-links:
-    # The `runs-on` key in this example configures the job to run on a GitHub-hosted runner or a self-hosted runner, depending on the repository running the workflow. 
-    # 
-    # In this example, the job will run on a self-hosted runner if the repository is named `docs-internal` and is within the `github` organization. If the repository doesn't match this path, then it will run on an `ubuntu-latest` runner hosted by GitHub. For more information on these options, see "[AUTOTITLE](/actions/using-jobs/choosing-the-runner-for-a-job)."
+  run-linting-formatting:
     runs-on: ubuntu-24.04 
-    # The `steps` key groups together all the steps that will run as part of the `check-links` job. Each job in a workflow has its own `steps` section.
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
       with:
         python-version: '3.10'
-        cache: 'pip' # caching pip dependencies
+        cache: 'pip' 
     - run: pip install -r requirements.txt
     - run: ruff check --verbose
+    - run: black --diff reddit-analysis.py
+    - run: bandit -r reddit-analysis.py --verbose
+    - run: mypy reddit-analysis.py
