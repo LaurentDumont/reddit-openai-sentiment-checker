@@ -1,0 +1,15 @@
+lint.select = ["B", "D", "E", "F", "I", "T20", "W", "N", "YTT", "ASYNC", "S", "A", "C4", "DTZ", "T10", "PIE", "PT", "RSE", "SLF", "SIM", "TCH", "PTH", "PGH", "PLC", "RUF", "RET"]
+ 
+# D1 - Don't enforce docstring, everywhere, all the time.
+# D401 - Don't enforce imperative mood. (Actually fine with me, but to strict to some colleagues.)
+# D413 - I don't get why blank lines at the end of Docstrings are a big deal.
+# PTH123 - Use Pathlib.Path.open instead of open directly. We're fine with open as it is.
+# RUF001 Can fix false positives like "L'individu" -> "Lindividu" (French word)
+lint.ignore = ["D1", "D401", "D413", "PTH123", "RUF001"]
+ 
+# F401 - Strips unused imports. Quite annoying when your file editor runs the fix command on every save.
+# F841 - Strips unused variables. Same excuse as for F401.
+# PIE804 - Replaces kwargs with actual arguments. Annoying when working with pydantic and wanting to test the kwargs interface.
+lint.unfixable = ["F401", "F841", "PIE804"]
+ 
+lint.pydocstyle = {convention = "google"}

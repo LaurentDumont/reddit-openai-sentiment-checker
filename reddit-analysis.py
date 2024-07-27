@@ -15,7 +15,7 @@ def get_openai_sentiment(titles):
     answer_format = (
         "Each title is separated by a comma."
         "Categorize the sentiment with one word."
-        "The words can be 'neutral' 'negative', 'positive' based on the sentiment."  # noqa: E501
+        "The words can be 'neutral' 'negative', 'positive' based on the sentiment."
         "Provide a percentage breakdown of each sentiment."
         "Run the sentiment analysis 5 times on all titles"
         "Return each run of the analysis"
