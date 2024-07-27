@@ -6,6 +6,12 @@ export REDDIT_CLIENT_SECRET=POTATO
 ```
 
 ### Run the script
+```
+python -m venv venv
+# Note that the requirements.txt file contains more utilities than what the code needs to run
+pip install -r requirements.txt
+python reddit-analysis.py
+```
 
 ### Output
 ```

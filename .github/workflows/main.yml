@@ -26,7 +26,7 @@ jobs:
     # The `runs-on` key in this example configures the job to run on a GitHub-hosted runner or a self-hosted runner, depending on the repository running the workflow. 
     # 
     # In this example, the job will run on a self-hosted runner if the repository is named `docs-internal` and is within the `github` organization. If the repository doesn't match this path, then it will run on an `ubuntu-latest` runner hosted by GitHub. For more information on these options, see "[AUTOTITLE](/actions/using-jobs/choosing-the-runner-for-a-job)."
-    runs-on: ubuntu-22.04 
+    runs-on: ubuntu-24.04 
     # The `steps` key groups together all the steps that will run as part of the `check-links` job. Each job in a workflow has its own `steps` section.
     steps:
     - uses: actions/checkout@v4
