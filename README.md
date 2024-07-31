@@ -1,3 +1,5 @@
+[![CI status](https://github.com/LaurentDumont/reddit-openai-sentiment-checker/actions/workflows/main.yml/badge.svg)](https://github.com/LaurentDumont/reddit-openai-sentiment-checker/actions/workflows/main.yml)
+
 ### Setup the env variables
 ```
 export OPENAI_API_KEY=POTATO

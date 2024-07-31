@@ -40,7 +40,7 @@ def get_openai_sentiment(titles):
 @click.command()
 @click.option('--subreddit', default='Bacon', help='The subreddit to analyze')
 @click.option('--keyword', default='Potatoes', help='The keyword to search for')
-@click.option('-s', '--limit-search-results', default=50, help='How many search results are returned from the PRAW')
+@click.option('-s', '--limit-search-results', default=50, help='How many search results are returned from the PRAW') # noqa: E501
 def get_reddit_posts(subreddit, keyword, limit_search_results):
     reddit = praw.Reddit(
         client_id=os.getenv("REDDIT_CLIENT_ID"),
@@ -49,7 +49,7 @@ def get_reddit_posts(subreddit, keyword, limit_search_results):
     )
 
     list_titles = []
-    for submission in reddit.subreddit(subreddit).search(keyword, limit=limit_search_results):
+    for submission in reddit.subreddit(subreddit).search(keyword, limit=limit_search_results): # noqa: E501
         list_titles.append(submission.title)
 
     get_openai_sentiment(list_titles)
